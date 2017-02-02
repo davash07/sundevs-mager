@@ -1,0 +1,12 @@
+    <div style="margin-top: 50px;" class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <% if(currentUser.rol === 'admin'){ %>
+            <li class="active"><a href="/admin/projects">Projects</a></li>
+            <li><a href="/admin/clients">Clients</a></li>
+            <li><a href="/admin/users">Users</a></li>
+            <% } else{ %>
+            <li class="active"><a href="/projects">Projects</a></li>
+            <% } %>
+
+        </ul>
+    </div>

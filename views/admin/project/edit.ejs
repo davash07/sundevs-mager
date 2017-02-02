@@ -1,0 +1,124 @@
+<% include ../../base/_header.ejs %>
+<% include ../../base/_navbar.ejs %>
+<% include ../../base/_aside.ejs %>
+<script>
+    $(document).ready(function () {
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+        var x = 1; //initlal text box count
+        $(add_button).click(function (e) { //on add input button click
+            e.preventDefault();
+            if (x < max_fields) {
+                x++;
+                $(wrapper).append('<div class="col-sm-12"><input type="text" class="form-control" name="activities" required/><a href="#" class="remove_field">Delete</a></div>'); //add input box
+            }
+        });
+
+        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
+
+    });
+
+</script>
+<br>
+
+<div class="col-sm-9">
+    <div class="row">
+        <form action="/admin/projects/<%= project._id %>" style="margin-top: 5%" method="post">
+            <div class="row">
+                <div class="form-group  col-sm-6">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" value="<%= project.name %>" required>
+                    <input type="text" hidden name="client_id" value="<%= project.client_id %>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Status</label><br>
+                    <select class="selectpicker" name="status" required>
+                        <option value="True">Active</option>
+                        <option value="False" active>Inactive</option>
+                    </select>
+                </div>
+
+                <div class="form-group  col-sm-6">
+                    <label>Start Date</label>
+                    <input type="date" class="form-control" name="start_date" value="<%= project.start_date %>"
+                           required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Estimated End Date</label>
+                    <input type="date" class="form-control" name="estimated_end_date"
+                           value="<%= project.estimated_end_date %>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Real End Date</label>
+                    <input type="date" class="form-control" name="real_end_date" value="<%= project.real_end_date %>"
+                           required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Challenging Date</label>
+                    <input type="date" class="form-control" name="challenging_date"
+                           value="<%= project.challenging_date %>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Estimated Hours</label>
+                    <input type="number" min="0" class="form-control" name="estimated_hours"
+                           value="<%= project.estimated_hours %>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Challenging Bugs</label>
+                    <input type="number" min="0" class="form-control" name="challenging_bugs"
+                           value="<%= project.challenging_bugs %>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Trello Board Id</label>
+                    <input type="text" class="form-control" name="trello_board_id"
+                           value="<%= project.trello_board_id %>" required>
+                </div>
+                <br>
+
+            </div>
+            <hr>
+            <div class="row">
+                <div class="form-group  col-sm-6 text-center input_fields_wrap">
+                    <label>Activities</label>
+                    <% if (project.activities === null) { %>
+                    <input type="text" class="form-control" name="activities" required>
+                    <a href="#" class="add_field_button">Add More</a>
+                    <% } else { %>
+                    <% for(var i = 0; i < project.activities.length; i++) { %>
+                    <input type="text" class="form-control" name="activities" id='elemento+[i]' value="<%=project.activities[i] %>"> <a href="#" class="remove_field">Delete</a>
+                    <% } %>
+                    <br>
+                    <a href="#" class="add_field_button">Add More</a>
+                    <% } %>
+                </div>
+                <div class="form-group  col-sm-6 text-center input_fields_wrapuser">
+                    <label>Users</label>
+                    <br>
+                    <% if (user != null) { %>
+                        <% for(var i = 0; i < user.length; i++) { %>
+                        <input type="checkbox" name="users_id" value="<%= user[i]._id%>" data-group-cls="btn-group-sm m-b"> <%= user[i].email%><br>
+                        <% } %>
+                    <% } else { %>
+                    ningun
+                    <% } %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5 text-center">
+                    <a class="btn btn-info" href="/admin/projects">Back</a>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <input type="hidden" value="PUT" name="_method">
+                    <button type="submit" class="btn btn-info ">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<% include ../../base/_footer.ejs %>

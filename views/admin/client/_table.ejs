@@ -1,0 +1,33 @@
+<div class="table-responsive">
+    <table class="text-center">
+        <thead >
+        <tr >
+            <th class="text-center" style="width: 10%">Company Name</th>
+            <th class="text-center" style="width: 10%">Contact Name</th>
+            <th class="text-center" style="width: 10%">Email</th>
+            <th class="text-center" style="width: 10%">WebSite</th>
+            <th class="text-center" style="width: 10%">Status</th>
+            <th class="text-center" style="width: 10%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% clients.forEach(function(client) { %>
+        <tr>
+            <td><%= client.company_name %></td>
+            <td><%= client.contact_name %></td>
+            <td><%= client.email %></td>
+            <td><%= client.website %></td>
+            <td><%= client.status %></td>
+            <td>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="/admin/clients/<%= client._id %>/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>

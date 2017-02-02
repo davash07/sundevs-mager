@@ -1,0 +1,58 @@
+<% include ../../base/_header.ejs %>
+<% include ../../base/_navbar.ejs %>
+<% include ../../base/_aside.ejs %>
+<br>
+
+<div class="col-sm-9">
+    <div class="row">
+        <!--<div class="container">-->
+            <form action="/admin/clients/<%= client._id %>" style="margin-top: 5%;" method="post">
+                <div class="form-group  col-sm-6">
+                    <label>Company Name</label>
+                    <input type="text" class="form-control" name="company_name" value="<%= client.company_name%>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Contact  Name</label>
+                    <input type="text" class="form-control" name="contact_name" value="<%= client.contact_name%>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control" name="phone_number" value="<%= client.phone_number%>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="email" value="<%= client.email%>" required>
+                </div>
+                <div class="form-group  col-sm-6">
+                    <label>WebSite</label>
+                    <input type="text" class="form-control" name="website" value="<%= client.website%>" required>
+                </div>
+                <div class="form-group  col-sm-6" >
+                    <label>Status</label><br>
+                    <select class="selectpicker" name="status" required>
+                        <option value="true" selected>Active</option>
+                        <option value="false" >Inactive</option>
+                    </select>
+                    <br><br>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-5 text-center">
+                        <a class="btn btn-info" href="/admin/clients">Back</a>
+
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <input type="hidden" value="PUT" name="_method">
+                        <button type="submit" class="btn btn-info ">Update</button>
+                    </div>
+                </div>
+
+                <!--<input type="submit" value="Update"/>-->
+            </form>
+        <!--</div>-->
+    </div>
+
+</div>
+
+<% include ../../base/_footer.ejs %>
+

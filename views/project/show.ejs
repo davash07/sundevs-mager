@@ -1,0 +1,51 @@
+<% include ../base/_header.ejs %>
+<% include ../base/_navbar.ejs %>
+<% include ../base/_aside.ejs %>
+<div class="col-sm-9">
+    <div class="row">
+        <div class="container">
+            <div class="row" style="margin-top: 50px" >
+                <div class="col-sm-6">
+                    <h4>Name :</h4>
+                    <h4><%= project.name %></h4>
+                </div>
+                <div class="col-sm-6">
+                    <h4>Activities</h4>
+                    <h4><%= project.activities %></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4>Estimated End Date</h4>
+                    <h4><%= project.estimated_end_date%></h4>
+                </div>
+                <div class="col-sm-4">
+                    <h4>Real End Date</h4>
+                    <h4><%= project.real_end_date%></h4>
+                </div>
+                <div class="col-sm-4">
+                    <h4>Challenging Date</h4>
+                    <h4><%= project.challenging_date%></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Challenging Bugs</h4>
+                    <h4><%= project.challenging_bugs %></h4>
+                </div>
+                <div class="col-sm-6">
+                    <h4>Status</h4>
+                    <h4><%= project.status %></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 text-center">
+                    <a href="/projects">Back</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+<% include ../base/_footer.ejs %>

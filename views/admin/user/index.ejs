@@ -1,0 +1,18 @@
+<% include ../../base/_header.ejs %>
+<% include ../../base/_navbar.ejs%>
+<% include ../../base/_aside.ejs %>
+<% include _form.ejs%>
+<!-- Tablet Project -->
+<% if(currentUser.rol != 'admin'){ %>
+<script type="text/javascript">
+    window.location.replace("/projects");
+</script>
+<% } else{ %>
+<% } %>
+<br>
+<br>
+<h2 class="sub-header">Users  <a href="#" type="button" data-toggle="modal" data-target="#myModal"><span style="font-size: 20px" class="glyphicon glyphicon-plus"></span></a></h2>
+
+<% include _table.ejs %>
+
+<% include ../../base/_footer.ejs %>
