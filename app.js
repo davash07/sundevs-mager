@@ -28,7 +28,7 @@ require('./config/setuppassport')(passport);
 var app = express();
 
 //
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 4000);
 setUpPassport();
 app.use(logger("dev"));
 
