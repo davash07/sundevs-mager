@@ -27,8 +27,7 @@ require('./config/setuppassport')(passport);
 
 var app = express();
 
-//
-app.set("port", process.env.PORT || 4000);
+app.set("port", process.env.PORT || 3000);
 setUpPassport();
 app.use(logger("dev"));
 
@@ -43,7 +42,6 @@ app.use(bodyParser.urlencoded({
 
 router.use(methodOverride(function(req, res){
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-        // look in urlencoded POST bodies and delete it
         var method = req.body._method;
         delete req.body._method;
         return method

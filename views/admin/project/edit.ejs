@@ -37,8 +37,13 @@
                 <div class="form-group  col-sm-6">
                     <label>Status</label><br>
                     <select class="selectpicker" name="status" required>
-                        <option value="True">Active</option>
-                        <option value="False" active>Inactive</option>
+                        <% if(project.status == true){%>
+                        <option value="true" selected>Active</option>
+                        <option value="false" >Inactive</option>
+                        <%}else{%>
+                        <option value="true" >Active</option>
+                        <option value="false" selected >Inactive</option>
+                        <%}%>
                     </select>
                 </div>
 
@@ -54,28 +59,27 @@
                 </div>
                 <div class="form-group  col-sm-6">
                     <label>Real End Date</label>
-                    <input type="date" class="form-control" name="real_end_date" value="<%= project.real_end_date %>"
-                           required>
+                    <input type="date" class="form-control" id="real_end_date" name="real_end_date" value="<%= project.real_end_date %>">
                 </div>
                 <div class="form-group  col-sm-6">
                     <label>Challenging Date</label>
                     <input type="date" class="form-control" name="challenging_date"
-                           value="<%= project.challenging_date %>" required>
+                           value="<%= project.challenging_date %>" id="challenging_date">
                 </div>
                 <div class="form-group  col-sm-6">
                     <label>Estimated Hours</label>
                     <input type="number" min="0" class="form-control" name="estimated_hours"
-                           value="<%= project.estimated_hours %>" required>
+                           value="<%= project.estimated_hours %>" id="estimated_hours">
                 </div>
                 <div class="form-group  col-sm-6">
                     <label>Challenging Bugs</label>
                     <input type="number" min="0" class="form-control" name="challenging_bugs"
-                           value="<%= project.challenging_bugs %>" required>
+                           value="<%= project.challenging_bugs %>" id="challenging_bugs">
                 </div>
                 <div class="form-group  col-sm-6">
                     <label>Trello Board Id</label>
                     <input type="text" class="form-control" name="trello_board_id"
-                           value="<%= project.trello_board_id %>" required>
+                           value="<%= project.trello_board_id %>" id="trello_board_id">
                 </div>
                 <br>
 
@@ -98,13 +102,27 @@
                 <div class="form-group  col-sm-6 text-center input_fields_wrapuser">
                     <label>Users</label>
                     <br>
+                    <div class="row" style="margin-top: 5%">
                     <% if (user != null) { %>
-                        <% for(var i = 0; i < user.length; i++) { %>
-                        <input type="checkbox" name="users_id" value="<%= user[i]._id%>" data-group-cls="btn-group-sm m-b"> <%= user[i].email%><br>
+                        <% for(var j = 0; j < user.length; j++) { %>
+                            <% for (var k = 0; k < project.users_id.length; k++){%>
+                                <%if(user[j]._id == project.users_id[k]){%>
+                        <div class="col-sm-6">
+                            <input type="checkbox" name="users_id" checked="true" value="<%= user[j]._id%>" data-group-cls="btn-group-sm m-b"> <%= user[j].email%><br><br>
+
+                        </div>
+                                 <%}%>
+                            <%}%>
                         <% } %>
-                    <% } else { %>
-                    ningun
-                    <% } %>
+                    <% for (var m = 0; m < user.length; m++){%>
+                    <%if(user[m]._id != project.users_id[m]){%>
+                        <div class="col-sm-6">
+                            <input type="checkbox" name="users_id" value="<%= user[m]._id%>" data-group-cls="btn-group-sm m-b"> <%= user[m].email%><br><br>
+                        </div>
+                    <%}%>
+                    <%}%>
+                    <%}%>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -113,7 +131,7 @@
                 </div>
                 <div class="col-sm-6 text-center">
                     <input type="hidden" value="PUT" name="_method">
-                    <button type="submit" class="btn btn-info ">Update</button>
+                    <button type="submit" onclick="validateEmpty()" class="btn btn-info ">Update</button>
                 </div>
             </div>
         </form>

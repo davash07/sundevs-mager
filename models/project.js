@@ -32,7 +32,8 @@ var projectSchema = new Schema({
 		type: String
 	},
 	challenging_bugs: {
-		type: Number
+		type: Number,
+        default: 0
 	},
 	status: {
 		type: Boolean,
@@ -44,9 +45,6 @@ var projectSchema = new Schema({
 	time_records: [{
         time_record_id: Schema.Types.ObjectId
     }],
-	// users_ids: [{
-	// 	user_id : Schema.Types.ObjectId
-	// }],
 	users_id: [String],
 	createdAt: {
 		type: Date,

@@ -6,6 +6,7 @@ module.exports  = function (router) {
     router.get("/projects/", projectController.index);
     router.get("/projects/:id", projectController.show);
     router.get("/projects/:id/time_record", time_record_controller.edit);
+    router.get("/projects/:id/time_record", time_record_controller.time_record_new);
 
 };
 

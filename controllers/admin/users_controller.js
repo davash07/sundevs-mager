@@ -7,7 +7,6 @@
 var passport = require("passport");
 var UserModel = require('../../models/user');
 var LocalStrategy = require("passport-local").Strategy;
-
 function index (req, res) {
     UserModel.find()
         .sort({createdAt: "descending"})
@@ -43,11 +42,12 @@ function destroy(req, res) {
 }
 
 function update(req, res, next) {
+
     UserModel.update({_id: req.params.id}, {$set: {
         name : req.body.name,
         email :  req.body.email,
         bio : req.body.bio,
-        role : req.body.role
+        rol : req.body.rol
     }}, function(err) {
         if(err) {
             console.log("Update Error:", err);

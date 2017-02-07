@@ -4,7 +4,7 @@
 <br>
 <div class="col-sm-9">
     <div class="row">
-        <form action="/admin/clients/<%= user._id %>" style="margin-top: 5%" method="post">
+        <form action="/admin/users/<%= user._id %>" style="margin-top: 5%" method="post">
             <div class="form-group  col-sm-6">
                 <label>Name</label>
                 <input type="text" class="form-control" name="name" value="<%= user.name %>" required>
@@ -24,10 +24,14 @@
             <div class="form-group col-sm-6" >
                 <div class="form-select">
                     <label>Rol</label><br>
-                    <select class="selectpicker" id="select" name="role" value="" required>
-                        <option value=""><%= user.role%></option>
-                        <option value="admin">Administrator</option>
+                    <select class="selectpicker" name="rol" required>
+                        <% if(user.rol == "admin"){%>
+                        <option value="admin" selected>Administrator</option>
                         <option value="user">User</option>
+                        <%}else{%>
+                        <option value="admin">Administrator</option>
+                        <option value="user" selected>User</option>
+                        <%}%>
                     </select>
                 </div>
             </div>

@@ -5,33 +5,16 @@
 var ProjectModel = require('../models/project');
 var TimeRecordModel = require('../models/time_record');
 
-function time_record_new (req, res, next){
-    var dataTimeRecord;
-    var dataProjects;
-    ProjectModel.find()
-        .sort({createdAt: "descending"})
-        .exec(function (err, projects) {
-            if(err){
-                return next(err);
-            }
-            dataProjects = projects;
-            if (dataTimeRecord != null){
-                res.render("time_record/index", {projects : projects, times_records : dataTimeRecord});
-            }
-        });
-
+function time_record_new (req, res) {
+    console.log("entro");
     TimeRecordModel.find()
         .sort({createdAt: "descending"})
-        .exec(function (err, times_records) {
+        .exec(function (err, time) {
             if(err){
                 return next(err);
             }
-            dataTimeRecord = times_records;
-            if (dataTimeRecord != null){
-                res.render("time_record/index", {projects : dataProjects, times_record : dataTimeRecord});
-            }
+            res.render("time_record/index", {time : time});
         });
-
 }
 
 function create(req, res, next) {
@@ -58,13 +41,53 @@ function create(req, res, next) {
         }
     });
 }
-
 function edit(req, res) {
+    var dataProjects;
+    var dataTimeRecord;
+
+    TimeRecordModel.find()
+        .sort({createdAt: "descending"})
+        .exec(function (err, time_records) {
+            if(err){
+                return next(err);
+            }
+            dataTimeRecord = time_records;
+            if (dataProjects != null){
+                res.render("time_record/index", { time_record : time_records, project : dataProjects});
+            }
+        });
+
     ProjectModel.findOne({_id: req.params.id}, function(err, project) {
-        console.log("Edit time ");
-        res.render("time_record/index", {project: project});
+        if(err){
+            return next(err);
+        }
+        dataProjects = project;
+        if (dataTimeRecord != null){
+            res.render("time_record/index", {project : dataProjects, time_record : dataTimeRecord});
+        }
+
+        // res.render("admin/project/edit", {project: project, user: dataUsers});
     });
 }
+//
+//
+// function edit(req, res) {
+//     console.log("time");
+//     ProjectModel.findOne({_id: req.params.id}, function(err, project) {
+//         console.log("Edit time ");
+//
+//         res.render("time_record/index", {project: project});
+//     });
+// }
+
+function show(req, res) {
+    TimeRecordModel.findOne({_id: req.params.id}, function(err, timeRecord) {
+        console.log("Show");
+        res.render("Time_Record/show", {timeRecord: timeRecord});
+    });
+}
+
 exports.time_record_new = time_record_new;
+exports.show = show;
 exports.create = create;
 exports.edit = edit;

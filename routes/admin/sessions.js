@@ -19,19 +19,12 @@ module.exports  = function (router, passport) {
 	router.route('/logout').delete(session_Controller.destroy);
 
     router.post("/login", passport.authenticate("login", {
-        successRedirect: "/admin/projects",
-        failureRedirect: "/",
+        successRedirect: "/admin/projects/",
+        failureRedirect: "/login",
         failureFlash: true
     }));
     /* GET Registration Page */
     router.get('/signup', function(req, res){
-        res.render('admin/user/register',{message: req.flash('message')});
+        res.render('/');
     });
-
-    /* Handle Registration POST */
-    router.post('/admin/create_user', passport.authenticate('signup', {
-        successRedirect: "/admin/users",
-        failureRedirect: "/admin/users",
-        failureFlash : true
-    }));
 };
