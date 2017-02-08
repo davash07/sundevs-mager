@@ -1,71 +1,83 @@
-<div class="table-responsive">
-    <table >
-        <thead>
-        <tr >
-            <th class="text-center" style="width: 15%">Name</th>
-            <th class="text-center" style="width: 15%">Start Date</th>
-            <th class="text-center" style="width: 20%">Estimated End Date</th>
-            <th class="text-center" style="width: 20%">Challenging Date</th>
-            <th class="text-center" style="width: 10%">Bugs Limit</th>
-            <th class="text-center" style="width: 10%">Status</th>
-            <th class="text-center" style="width: 10%"></th>
-            <th class="text-center" style="width: 10%"></th>
-        </tr>
-        </thead>
-        <tbody class="text-center">
-        <% projects.forEach(function(project) { %>
-        <% if(currentUser.rol === 'admin'){ %>
-        <tr>
-            <td><%= project.name %></td>
-            <td><%= project.start_date %></td>
-            <td><%= project.estimated_end_date %></td>
-            <td><%= project.challenging_date %></td>
-            <td><%= project.challenging_bugs %></td>
-            <td><%= project.status %></td>
-            <td>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="/projects/<%= project._id%>"><span class="glyphicon glyphicon-search"></span></a>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="/projects/<%= project._id%>"><span class="glyphicon glyphicon-calendar"></span></a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <% } else{ %>
-        <% for(var i = 0; i < project.users_id.length; i++) { %>
-        <% if(project.users_id[i] === currentUser.id){%>
-        <tr>
-            <td><%= project.name %></td>
-            <td><%= project.start_date %></td>
-            <td><%= project.estimated_end_date %></td>
-            <td><%= project.challenging_date %></td>
-            <td><%= project.challenging_bugs %></td>
-            <td><%= project.status %></td>
-            <td>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="/projects/<%= project._id%>"><span class="glyphicon glyphicon-search"></span></a>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="/projects/<%= project._id%>/time_record"><span class="glyphicon glyphicon-calendar"></span></a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <%}%>
-        <% } %>
-        <% } %>
-        <% }) %>
-        </tbody>
-    </table>
-</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2 style="font-size: 30px">
+                Projects
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn bg-blue-grey btn-circle waves-effect waves-circle waves-float">
+                    <i class="material-icons">add</i>
+                </button>
+            </h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr >
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Start Date</th>
+                    <th class="text-center">Estimated End Date</th>
+                    <th class="text-center">Challenging Date</th>
+                    <th class="text-center">Bugs Limit</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                <% projects.forEach(function(project) { %>
+                <% if(currentUser.rol === 'admin'){ %>
+                <tr>
+                    <td><%= project.name %></td>
+                    <td><%= project.start_date %></td>
+                    <td><%= project.estimated_end_date %></td>
+                    <td><%= project.challenging_date %></td>
+                    <td><%= project.challenging_bugs %></td>
+                    <td><%= project.status %></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="/projects/<%= project._id%>"><i class="material-icons">search</i></a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="/projects/<%= project._id%>"><i class="material-icons">insert_invitation</i></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <% } else{ %>
+                <% for(var i = 0; i < project.users_id.length; i++) { %>
+                <% if(project.users_id[i] === currentUser.id){%>
+                <tr>
+                    <td><%= project.name %></td>
+                    <td><%= project.start_date %></td>
+                    <td><%= project.estimated_end_date %></td>
+                    <td><%= project.challenging_date %></td>
+                    <td><%= project.challenging_bugs %></td>
+                    <td><%= project.status %></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="/projects/<%= project._id%>"><span class="glyphicon glyphicon-search"></span></a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="/projects/<%= project._id%>/time_record"><span class="glyphicon glyphicon-calendar"></span></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <%}%>
+                <% } %>
+                <% } %>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -9,7 +9,7 @@
             e.preventDefault();
             if(x < max_fields){
                 x++;
-                $(wrapper).append('<div class="col-sm-12"><input type="text" class="form-control" name="activities" required/><a href="#" class="remove_field">Delete</a></div>');
+                $(wrapper).append('<div class="text-center input_fields_wrap form-line"><a href="#" class="remove_field"><i class="material-icons">close</i> </a><input type="text" class="form-control" name="activities" required/><label class="form-label">Activities</label></div>');
             }
         });
 
@@ -29,17 +29,20 @@
 
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">New Project</h4>
+                <h4 class="text-center modal-title">New Project</h4>
             </div>
             <div class="modal-body">
-                <form action="/admin/projects" method="post">
+                <form id="form_validation" method="POST" action="/admin/projects">
                     <div class="row">
-                        <div class="form-group  col-sm-6">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name" required>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="name" required>
+                                    <label class="form-label">Name</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-6 ">
+                        <div class="col-sm-6 ">
                             <label>Client</label>
                             <div class="form-select">
                                 <select class="selectpicker" id="select" name="client_id" required>
@@ -49,50 +52,83 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group  col-sm-6">
-                            <label>Start Date</label>
-                            <input type="date" class="form-control" name="start_date" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" class="form-control" name="start_date" required>
+                            </div>
                         </div>
-                        <div class="form-group  col-sm-6">
-                            <label>Estimated End Date</label>
-                            <input type="date" class="form-control" name="estimated_end_date" required>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Estimated End Date</label>
+                                <input type="date" class="form-control" name="estimated_end_date" required>
+                            </div>
                         </div>
-                        <div class="form-group  col-sm-6">
-                            <label>Real End Date</label>
-                            <input type="date" id="real_end_date" class="form-control" name="real_end_date">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Real End Date</label>
+                                <input type="date" id="real_end_date" class="form-control" name="real_end_date">
+                            </div>
                         </div>
-                        <div class="form-group  col-sm-6">
-                            <label>Challenging Date</label>
-                            <input type="date" id="challenging_date" class="form-control" name="challenging_date">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Challenging Date</label>
+                                <input type="date" id="challenging_date" class="form-control" name="challenging_date">
+                            </div>
                         </div>
-                        <div class="form-group  col-sm-6">
-                            <label>Estimated Hours</label>
-                            <input type="number" min="0" id="estimated_hours" class="form-control" name="estimated_hours">
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="number" min="0" id="estimated_hours" class="form-control" name="estimated_hours">
+                                    <label class="form-label">Estimated Hours</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group  col-sm-6">
-                            <label>Challenging Bugs</label>
-                            <input type="number" min="0" id="challenging_bugs" class="form-control" name="challenging_bugs">
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="number" min="0" id="challenging_bugs" class="form-control" name="challenging_bugs">
+                                    <label class="form-label">Challenging Bugs</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group  col-sm-6">
-                            <label>Trello Board Id</label>
-                            <input type="text" class="form-control" id="trello_board_id" name="trello_board_id" >
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" id="trello_board_id" name="trello_board_id" >
+                                    <label class="form-label">Trello Board Id</label>
+                                </div>
+                            </div>
                         </div>
-                        <br>
-                        <div class="form-group  col-sm-6" >
-                            <label>Status</label>
-                            <select class="selectpicker" name="status" required>
-                                <option value="true">Active</option>
-                                <option value="false" active>Inactive</option>
-                            </select>
+                        <div class="col-sm-6">
+                            <div class="form-group" >
+                                <label>Status</label>
+                                <select class="selectpicker" name="status" required>
+                                    <option value="true">Active</option>
+                                    <option value="false" active>Inactive</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="form-group  col-sm-12 text-center input_fields_wrap">
-                            <label>Activities</label>
-                            <input type="text" class="form-control" name="activities" required>
-                            <a href="#" class="add_field_button">Add More</a>
+                        <div class=" col-sm-12">
+                            <div class="form-group form-float">
+                                <a href="#" class="add_field_button"><i class="material-icons">add</i></a>
+                                <div class="text-center input_fields_wrap form-line">
+
+                                    <input type="text" class="form-control" name="activities" required>
+                                    <label class="form-label">Activities</label>
+
+
+
+                                </div>
+
+                            </div>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <div class="row">

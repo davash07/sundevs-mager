@@ -1,43 +1,52 @@
-<h2 class="text-center" style="margin-top: 5%">Time Record <a href="#" type="button" data-toggle="modal" data-target="#myModal"><span style="font-size: 20px" class="glyphicon glyphicon-plus"></span></a></h2>
-<div class="table-responsive">
-    <table >
-        <thead>
-        <tr >
-            <th class="text-center" style="width: 20%">Date</th>
-            <th class="text-center" style="width: 10%">Project Name</th>
-            <th class="text-center" style="width: 25%">Time (hh:mm)</th>
-            <th class="text-center" style="width: 10%">Activity</th>
-            <th class="text-center" style="width: 5%"></th>
-        </tr>
-        </thead>
-        <tbody class="text-center">
-        <%time_record.forEach(function (timerecord) { %>
-        <% if(timerecord.user_id == currentUser.id && timerecord.project_id == project.id){%>
-        <tr>
-            <td><%= timerecord.date %></td>
-            <td><%= project.name %></td>
-            <td><%if(timerecord.minutes > 60){%>
-                <%= timerecord.hours + 1%>:00
-                <%}else{%>
-                <%= timerecord.hours %>:<%= timerecord.minutes %>
-                <%}%>
-               </td>
-            <td><%= timerecord.activity %></td>
-            <td>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="/admin/clients/<%= timerecord._id %>/edit"><span class="glyphicon glyphicon-pencil"></span></a>
-                    </div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2 style="font-size: 30px">
+                Time Record
+                <button type="button" data-toggle="modal" data-target="#myModal"
+                        class="btn bg-blue-grey btn-circle waves-effect waves-circle waves-float">
+                    <i class="material-icons">add</i>
+                </button>
+            </h2>
+        </div>
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Project Name</th>
+                            <th class="text-center">Time (hh:mm)</th>
+                            <th class="text-center">Activity</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-center">
+                        <% time_record.forEach(function (timerecord) { %>
+                        <% if(timerecord.user_id == currentUser.id && timerecord.project_id == project.id){ %>
+                        <tr>
+                            <td><%= timerecord.date %></td>
+                            <td><%= project.name %></td>
+                            <td>
+                                <% if(timerecord.minutes > 60){ %>
+                                <%= timerecord.hours + 1 %>:00
+                                <% }else{ %>
+                                <%= timerecord.hours %>:<%= timerecord.minutes %>
+                                <% } %>
+                            </td>
+                            <td><%= timerecord.activity %></td>
+
+                        </tr>
+                        <% } %>
+                        <% }) %>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-            </td>
-        </tr>
-        <%}%>
-        <%})%>
-
-        </tbody>
-    </table>
-</div>
+        </div>
+    </div>
+</section>
 
 
 

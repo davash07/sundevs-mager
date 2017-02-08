@@ -1,37 +1,39 @@
 <% include ../base/_header.ejs %>
-<% include ../base/_navbar.ejs%>
+<% include ../base/_navbar.ejs %>
 <% include ../base/_aside.ejs %>
-<section class="wrapper">
-    <section class="main-content">
-        <div class="container">
-            <div class="col-sm-8" style="margin-top: 5%">
-                <% for (var i = 0; i < projects.length; i++){%>
-                <%if (projects[i].users_id == null ){%>
-                <%}else{%>
-                <%for (var j = 0; j < projects[i].users_id.length; j++){%>
-                <%if(projects[i].users_id[j] == currentUser._id){%>
-                <div class="col-sm-4" >
-                    <h2><%= projects[i].name %></h2>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2 style="font-size: 30px">
+                Dashboard
+            </h2>
+        </div>
 
-                    <div class="w3-card-4" >
-                        <header class="w3-container w3-light-grey">
-                            <%for (var l = 0; l < time_record.length; l++ ){ %>
-                            <%if (time_record[l].project_id == projects[i].id && currentUser.id == time_record[l].user_id){%>
-                            <%= time_record[l].hours%>
-                            <%= time_record[l].minutes%>
-                            <%}%>
-                            <%}%>
-                        </header>
-                    </div>
+        <% for (var i = 0; i < projects.length; i++){ %>
+        <% if (projects[i].users_id == null ){ %>
+        <% }else{ %>
+        <% for (var j = 0; j < projects[i].users_id.length; j++){ %>
+        <% if(projects[i].users_id[j] == currentUser._id){ %>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div style="height: auto" class="info-box-4 bg-light-blue hover-zoom-effect">
+                <div class="icon">
+                    <i class="material-icons">access_alarm</i>
                 </div>
-                <%}%>
-                <%}%>
-                <%}%>
-
-                <%}%>
-
+                <div class="content">
+                    <div class="text" style="font-size: 20px"><%= projects[i].name %></div>
+                    <% for (var l = 0; l < time_record.length; l++ ){ %>
+                    <% if (time_record[l].project_id == projects[i].id && currentUser.id == time_record[l].user_id){ %>
+                    <div class="number"> <%= time_record[l].hours %>:<%= time_record[l].minutes %>AM</div>
+                    <% } %>
+                    <% } %>
+                </div>
             </div>
         </div>
-    </section>
+        <% } %>
+        <% } %>
+        <% } %>
+
+        <% } %>
+    </div>
 </section>
 <% include ../base/_footer.ejs %>

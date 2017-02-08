@@ -1,37 +1,51 @@
-<div class="table-responsive">
-    <table class="text-center">
-        <thead>
-        <tr class="text-center">
-            <th class="text-center" style="width: 8%">Name</th>
-            <th class="text-center" style="width: 10%">Biography</th>
-            <th class="text-center" style="width: 8%">Role</th>
-            <th class="text-center" style="width: 10%">Email</th>
-            <th class="text-center" style="width: 5%"></th>
-            <th class="text-center" style="width: 5%"></th>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2 style="font-size: 30px">
+                Users
+                <button type="button" data-toggle="modal" data-target="#myModal"
+                        class="btn bg-blue-grey btn-circle waves-effect waves-circle waves-float">
+                    <i class="material-icons">add</i>
+                </button>
+            </h2>
+        </div>
+        <div class="table-responsive">
+            <table class=" table text-center">
+                <thead>
+                <tr class="text-center">
+                    <th class="text-center" >Name</th>
+                    <th class="text-center" >Biography</th>
+                    <th class="text-center" >Role</th>
+                    <th class="text-center" >Email</th>
+                    <th class="text-center" ></th>
+                    <th class="text-center" ></th>
 
-        </tr>
-        </thead>
-        <tbody>
-        <% users.forEach(function(user) { %>
-        <tr>
-            <td><%= user.name %></td>
-            <td><%= user.bio %></td>
-            <td><%= user.rol %></td>
-            <td><%= user.email %></td>
-            <td>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="#" data-href="/admin/users/<%= user._id%>/destroy" data-toggle="modal" data-target="#confirm-delete"><span class="glyphicon glyphicon-remove"></span></a><br>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="col-sm-6">
-                    <a href="/admin/users/<%= user._id %>/edit"><span class="glyphicon glyphicon-pencil"></span></a>
-                </div>
-            </td>
-        </tr>
-        <% }) %>
-        </tbody>
-    </table>
-</div>
+                </tr>
+                </thead>
+                <tbody>
+                <% users.forEach(function(user) { %>
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.bio %></td>
+                    <td><%= user.rol %></td>
+                    <td><%= user.email %></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="#" data-href="/admin/users/<%= user._id %>/destroy" data-toggle="modal"
+                                   data-target="#confirm-delete"><i class="material-icons">close</i> </a><br>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-sm-6">
+                            <a href="/admin/users/<%= user._id %>/edit"><i class="material-icons">create</i> </a>
+                        </div>
+                    </td>
+                </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

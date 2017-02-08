@@ -1,12 +1,70 @@
-    <div style="margin-top: 50px;" class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-            <% if(currentUser.rol === 'admin'){ %>
-            <li class="active"><a href="/admin/projects">Projects</a></li>
-            <li><a href="/admin/clients">Clients</a></li>
-            <li><a href="/admin/users">Users</a></li>
-            <% } else{ %>
-            <li class="active"><a href="/projects">Projects</a></li>
-            <% } %>
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="image">
+                <img src="/images/user.png" width="48" height="48" alt="User" />
+            </div>
+            <div class="info-container">
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= currentUser.name%></div>
+                <div class="email"><%= currentUser.email%></div>
+                <div class="btn-group user-helper-dropdown">
+                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                        <li role="seperator" class="divider"></li>
+                        <li><a href="/logout"><i class="material-icons">input</i>Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <% if(currentUser.rol === 'admin'){ %>
+                <li>
+                    <a href="">
+                        <i class="material-icons">home</i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/projects">
+                        <i class="material-icons">layers</i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/clients">
+                        <i class="material-icons">text_fields</i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/users">
+                        <i class="material-icons">face</i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <%}else{%>
+                <li>
+                    <a href="/dashboard">
+                        <i class="material-icons">home</i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/projects">
+                        <i class="material-icons">layers</i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <%}%>
 
-        </ul>
-    </div>
+
+            </ul>
+        </div>
+    </aside>
+    <!-- #END# Left Sidebar -->
+</section>

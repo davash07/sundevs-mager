@@ -1,63 +1,93 @@
 <% include ../../base/_header.ejs %>
 <% include ../../base/_navbar.ejs %>
 <% include ../../base/_aside.ejs %>
-<br>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2 style="font-size: 30px">
+                Edit <%= client.company_name %>
+            </h2>
+        </div>
 
-<div class="col-sm-9">
-    <div class="row">
         <!--<div class="container">-->
-            <form action="/admin/clients/<%= client._id %>" style="margin-top: 5%;" method="post">
-                <div class="form-group  col-sm-6">
-                    <label>Company Name</label>
-                    <input type="text" class="form-control" name="company_name" value="<%= client.company_name%>" required>
-                </div>
-                <div class="form-group  col-sm-6">
-                    <label>Contact  Name</label>
-                    <input type="text" class="form-control" name="contact_name" value="<%= client.contact_name%>" required>
-                </div>
-                <div class="form-group  col-sm-6">
-                    <label>Phone Number</label>
-                    <input type="text" class="form-control" name="phone_number" id="phone_number" value="<%= client.phone_number%>">
-                </div>
-                <div class="form-group  col-sm-6">
-                    <label>Email</label>
-                    <input type="text" class="form-control" name="email" value="<%= client.email%>" required>
-                </div>
-                <div class="form-group  col-sm-6">
-                    <label>WebSite</label>
-                    <input type="text" class="form-control" name="website" id="phone_number" value="<%= client.website%>">
-                </div>
-                <div class="form-group  col-sm-6" >
-                    <label>Status</label><br>
-                    <select class="selectpicker" name="status" required>
-                        <% if(client.status == true){%>
-                        <option value="true" selected>Active</option>
-                        <option value="false" >Inactive</option>
-                        <%}else{%>
-                        <option value="true" >Active</option>
-                        <option value="false" selected >Inactive</option>
-                        <%}%>
-                    </select>
-
-                </div>
-                <div class="row">
-
-                    <div class="col-sm-5 text-center">
-                        <a class="btn btn-info" href="/admin/clients">Back</a>
-
-                    </div>
-                    <div class="col-sm-6 text-center">
-                        <input type="hidden" value="PUT" name="_method">
-                        <button type="submit" class="btn btn-info ">Update</button>
+        <form action="/admin/clients/<%= client._id %>" id="form_validation" method="post">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label>Company Name</label>
+                            <input style="background-color: transparent" type="text" class="form-control"
+                                   name="company_name" value="<%= client.company_name %>" required>
+                        </div>
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label>Contact Name</label>
+                            <input style="background-color: transparent" type="text" class="form-control"
+                                   name="contact_name" value="<%= client.contact_name %>" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label>Phone Number</label>
+                            <input style="background-color: transparent" type="text" class="form-control"
+                                   name="phone_number" id="phone_number" value="<%= client.phone_number %>">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label>Email</label>
+                            <input style="background-color: transparent" type="email" class="form-control" name="email"
+                                   value="<%= client.email %>" required>
 
-                <!--<input type="submit" value="Update"/>-->
-            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label>WebSite</label>
+                            <input style="background-color: transparent" type="text" class="form-control" name="website"
+                                   id="phone_number" value="<%= client.website %>">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div style="background-color: transparent" class="form-group">
+                        <label>Status</label><br>
+                        <select style="background-color: transparent" class="selectpicker" name="status" required>
+                            <% if(client.status == true){ %>
+                            <option value="true" selected>Active</option>
+                            <option value="false">Inactive</option>
+                            <% }else{ %>
+                            <option value="true">Active</option>
+                            <option value="false" selected>Inactive</option>
+                            <% } %>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5 text-center">
+                    <a class="btn btn-info" href="/admin/clients">Back</a>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <input type="hidden" value="PUT" name="_method">
+                    <button type="submit" class="btn btn-info ">Update</button>
+                </div>
+            </div>
+            <!--<input type="submit" value="Update"/>-->
+        </form>
         <!--</div>-->
     </div>
-
-</div>
+</section>
 
 <% include ../../base/_footer.ejs %>
 
