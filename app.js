@@ -23,6 +23,7 @@ require("./routes/admin/projects")(router_admin);
 require("./routes/admin/clients.js")(router_admin);
 require("./routes/times_records")(router);
 require("./routes/projects")(router);
+require("./routes/dashboard")(router);
 require('./config/setuppassport')(passport);
 
 var app = express();

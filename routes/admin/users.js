@@ -14,7 +14,7 @@ module.exports  = function (router) {
     router.put("/users/:id", userController.update);
     router.get("/users/:id", userController.show);
 
-    router.post('/admin/create_user', passport.authenticate('signup', {
+    router.post('/create_user', passport.authenticate('signup', {
         successRedirect: "/admin/users",
         failureRedirect: "/admin/users",
         failureFlash : true

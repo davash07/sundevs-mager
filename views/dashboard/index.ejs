@@ -1,11 +1,37 @@
-<% include ../base %>
+<% include ../base/_header.ejs %>
+<% include ../base/_navbar.ejs%>
+<% include ../base/_aside.ejs %>
 <section class="wrapper">
-    <% include ../base%>
-    <% include ../base %>
     <section class="main-content">
         <div class="container">
+            <div class="col-sm-8" style="margin-top: 5%">
+                <% for (var i = 0; i < projects.length; i++){%>
+                <%if (projects[i].users_id == null ){%>
+                <%}else{%>
+                <%for (var j = 0; j < projects[i].users_id.length; j++){%>
+                <%if(projects[i].users_id[j] == currentUser._id){%>
+                <div class="col-sm-4" >
+                    <h2><%= projects[i].name %></h2>
 
+                    <div class="w3-card-4" >
+                        <header class="w3-container w3-light-grey">
+                            <%for (var l = 0; l < time_record.length; l++ ){ %>
+                            <%if (time_record[l].project_id == projects[i].id && currentUser.id == time_record[l].user_id){%>
+                            <%= time_record[l].hours%>
+                            <%= time_record[l].minutes%>
+                            <%}%>
+                            <%}%>
+                        </header>
+                    </div>
+                </div>
+                <%}%>
+                <%}%>
+                <%}%>
+
+                <%}%>
+
+            </div>
         </div>
     </section>
 </section>
-<% include ../base %>
+<% include ../base/_footer.ejs %>
