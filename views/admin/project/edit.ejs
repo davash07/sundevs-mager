@@ -24,6 +24,7 @@
 
     });
 
+
 </script>
 <br>
 
@@ -86,8 +87,7 @@
                         <div class="form-line">
                             <label>Real End Date</label>
                             <input style="background-color: transparent" type="date" class="form-control"
-                                   id="real_end_date" name="real_end_date" value="<%= project.real_end_date %>"
-                                   required>
+                                   id="real_end_date" name="real_end_date" value="<%= project.real_end_date %>">
                         </div>
                     </div>
                 </div>
@@ -95,9 +95,8 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <label>Challenging Date</label>
-                            <input style="background-color: transparent" type="date" class="form-control"
-                                   name="challenging_date" value="<%= project.challenging_date %>" id="challenging_date"
-                                   required>
+                            <input style="background-color: transparent" type="date" class=" datepicker form-control"
+                                   name="challenging_date" value="<%= project.challenging_date %>" id="challenging_date">
                         </div>
                     </div>
                 </div>
@@ -158,8 +157,8 @@
                             <% for (var k = 0; k < project.users_id.length; k++){ %>
                             <% if(user[j]._id == project.users_id[k]){ %>
                             <div class="col-sm-6">
-                                <input type="checkbox" name="users_id" id="basic_checkbox_[j]" checked value="<%= user[j]._id %>" data-group-cls="btn-group-sm m-b">
-                                <label for="basic_checkbox_[j]"><%= user[j].email %></label>
+                                <input type="checkbox" name="users_id" id="basic_checkbox_<%=j%>" checked value="<%= user[j]._id %>" data-group-cls="btn-group-sm m-b">
+                                <label for="basic_checkbox_<%=j%>"><%= user[j].email %></label>
                             </div>
                             <% } %>
                             <% } %>
@@ -167,8 +166,8 @@
                             <% for (var m = 0; m < user.length; m++){ %>
                             <% if(user[m]._id != project.users_id[m]){ %>
                             <div class="col-sm-6">
-                                <input type="checkbox" name="users_id" id="basic_checkbox[m]" value="<%= user[m]._id %>">
-                                <label for="basic_checkbox[m]"><%= user[m].email %></label>
+                                <input type="checkbox" name="users_id" id="basic_checkbox_<%=m%>" value="<%= user[m]._id %>">
+                                <label for="basic_checkbox_<%=m%>" ><%= user[m].email %></label>
                             </div>
                             <%}%>
                             <%}%>

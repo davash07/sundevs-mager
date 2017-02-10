@@ -1,0 +1,65 @@
+<% include ../../base/_header.ejs %>
+<% include ../../base/_navbar.ejs %>
+<% include ../../base/_aside.ejs %>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2 style="font-size: 30px">
+                Report <%= project.name %>
+            </h2>
+        </div>
+        <div class="body">
+            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                <thead>
+                <tr>
+                    <th class="text-center">Time Frame</th>
+                    <th class="text-center">User</th>
+                    <th class="text-center">Total Hours</th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                <% if(user.length == undefined ){ %>
+                <% var sumHours = [];
+                    var hours = 0;
+                    var sumMinutes = [];
+                    var minutes = 0;
+                %>
+                <% for (var l = 0; l < time_record.length; l++ ){ %>
+                <% if (time_record[l].project_id == project.id && user.id == time_record[l].user_id){ %>
+                <% sumHours.push(time_record[l].hours); hours = hours + time_record[l].hours;
+                    sumMinutes.push(time_record[l].minutes); minutes = minutes + time_record[l].minutes;
+                }} %>
+                <tr>
+                    <td><%= project.start_date %></td>
+                    <td><%= user.name %></td>
+                    <td><%= hours %></td>
+                </tr>
+                <% }else{%>
+                <% for (var i = 0; i < time_record.length; i++ ){ %>
+                <% for (var k = 0; k < user.length; k++){
+                if(user[k].id == time_record[i].user_id){%>
+                <% var sumHours = [];
+                    var hours = 0;
+                    var sumMinutes = [];
+                    var minutes = 0;
+                %>
+                <% if (time_record[i].project_id == project.id && user[k].id == time_record[i].user_id){ %>
+                <% sumHours.push(time_record[i].hours); hours = hours + time_record[i].hours;
+                    sumMinutes.push(time_record[i].minutes); minutes = minutes + time_record[i].minutes;
+                %>
+                <tr>
+                    <td><%= project.start_date %></td>
+                    <td><%= user[k].name %></td>
+                    <td><%= hours %></td>
+                </tr>
+
+                <%}}}}}%>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<% include ../../base/_footer.ejs %>
+

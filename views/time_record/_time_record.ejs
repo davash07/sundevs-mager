@@ -29,10 +29,14 @@
                             <td><%= project.name %></td>
                             <td>
                                 <% if(timerecord.minutes > 60){ %>
-                                <%= timerecord.hours + 1 %>:00
+                                0<%= timerecord.hours + 1 %>:00
                                 <% }else{ %>
-                                <%= timerecord.hours %>:<%= timerecord.minutes %>
+                                0<%= timerecord.hours %>:<% var minutes = "" +timerecord.minutes+ ""; if(minutes.length == 1){ %>
+                                    0<%=timerecord.minutes %>
+                                <%}else{%>
+                                <%= timerecord.minutes %>
                                 <% } %>
+                                <%}%>
                             </td>
                             <td><%= timerecord.activity %></td>
 

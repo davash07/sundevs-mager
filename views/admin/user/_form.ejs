@@ -20,7 +20,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="email" class="form-control" name="name" required>
+                                    <input type="email" class="form-control" name="email" required>
                                     <label class="form-label">Email</label>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 ">
-                            <div class="form-group ">
+                            <div class="form-group">
                                 <label>Rol</label>
                                 <div class="form-select">
                                     <select class="selectpicker" id="select" name="rol" required>
@@ -45,17 +45,15 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <textarea name="bio" id="bio" cols="30" rows="3" class="form-control no-resize" required></textarea>
+                                    <textarea name="bio" id="bio" cols="30" rows="3"
+                                              class="form-control no-resize"></textarea>
                                     <label class="form-label">Biography</label>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                     <div class="modal-footer">
                         <div class="row">
@@ -73,10 +71,9 @@
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title text-center" id="myModalLabel">Confirm Delete</h2>
+                <h2 class="modal-title text-center" id="myModalLabel">Confirm Delete User</h2>
             </div>
 
             <div class="modal-body text-center">
@@ -84,18 +81,11 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger btn-ok">Delete</a>
+                <a class="btn btn-primary" id="dataConfirmOK">Yes</a>
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    $('#confirm-delete').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    });
-    function validateEmpty() {
-        document.getElementById("bio").defaultValue = "--";
-    }
-</script>
+

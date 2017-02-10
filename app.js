@@ -6,6 +6,7 @@ var flash = require("connect-flash");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var path = require("path");
+var favicon = require('serve-favicon');
 var session = require("express-session");
 var logger = require("morgan");
 var setUpPassport = require("./config/setuppassport");
@@ -21,6 +22,8 @@ var routes_users = require("./routes/users");
 require("./routes/admin/users")(router_admin);
 require("./routes/admin/projects")(router_admin);
 require("./routes/admin/clients.js")(router_admin);
+require("./routes/admin/dashboard")(router_admin);
+require("./routes/admin/reports")(router_admin);
 require("./routes/times_records")(router);
 require("./routes/projects")(router);
 require("./routes/dashboard")(router);
@@ -35,6 +38,8 @@ app.use(logger("dev"));
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(favicon(path.join(__dirname+'/public/images/favicon.ico')));
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({

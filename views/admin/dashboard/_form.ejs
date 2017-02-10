@@ -1,0 +1,211 @@
+<script>
+    function validateEmpty() {
+        document.getElementById("minutes").defaultValue = "00";
+        document.getElementById("comment").defaultValue = "--";
+    }
+</script>
+<!-- Modal -->
+<div id="ModalProject" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center">Create Report Project</h2>
+            </div>
+            <div class="modal-body">
+                <form id="form_validation" action="/admin/report_project" method="POST">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <label>Project</label>
+                                <select class="selectpicker" id="project" name="project">
+                                    <% if (projects.length === null) { %>
+                                    <option value="">--------</option>
+                                    <% } else { %>
+                                    <% for(var i = 1; i < projects.length; i++){ %>
+                                    <option value="<%= projects[i]._id%>"><%= projects[i].name%></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <label>User</label><br>
+                                <select class="selectpicker" id="user" name="user">
+                                    <% if (users.length === null) { %>
+                                    <option value="">--------</option>
+                                    <% } else { %>
+                                    <option value="all">--------</option>
+                                    <% for(var j = 1; j < users.length; j++){ %>
+                                    <option value="<%= users[j]._id%>"><%= users[j].name%></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" class="form-control" name="start_date" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" class="form-control" name="start_date" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <center>
+                            <button class="btn btn-primary waves-effect" type="submit">Save</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalActivity" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center">Create Report Activity</h2>
+            </div>
+            <div class="modal-body">
+                <form id="form_validation" action="/admin/report_activity" method="POST">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <label>Project</label>
+                                <select class="selectpicker" id="project" name="project">
+                                    <% if (projects.length === null) { %>
+                                    <option value="">--------</option>
+                                    <% } else { %>
+                                    <% for(var i = 1; i < projects.length; i++){ %>
+                                    <option value="<%= projects[i]._id%>"><%= projects[i].name%></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <label>User</label><br>
+                                <select class="selectpicker" id="user" name="user">
+                                    <% if (users.length === null) { %>
+                                    <option value="">--------</option>
+                                    <% } else { %>
+                                    <option value="all">--------</option>
+                                    <% for(var j = 1; j < users.length; j++){ %>
+                                    <option value="<%= users[j]._id%>"><%= users[j].name%></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" class="form-control" name="start_date" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" class="form-control" name="start_date" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <center>
+                            <button class="btn btn-primary waves-effect" type="submit">Save</button>
+                        </center>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="ModalUser" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center">Create Report Activity</h2>
+            </div>
+            <div class="modal-body">
+                <form id="form_validation" action="/admin/report_user" method="POST">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <label>Project</label>
+                                <select class="selectpicker" id="project" name="project">
+                                    <% if (projects.length === null) { %>
+                                    <option value="">--------</option>
+                                    <% } else { %>
+                                    <% for(var i = 1; i < projects.length; i++){ %>
+                                    <option value="<%= projects[i]._id%>"><%= projects[i].name%></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <label>User</label><br>
+                                <select class="selectpicker" id="user" name="user">
+                                    <% if (users.length === null) { %>
+                                    <option value="">--------</option>
+                                    <% } else { %>
+                                    <option value="all">--------</option>
+                                    <% for(var j = 1; j < users.length; j++){ %>
+                                    <option value="<%= users[j]._id%>"><%= users[j].name%></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" class="form-control" name="start_date" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" class="form-control" name="start_date" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <center>
+                            <button class="btn btn-primary waves-effect" type="submit">Save</button>
+                        </center>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+

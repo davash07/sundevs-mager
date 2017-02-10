@@ -21,19 +21,18 @@ module.exports = function(passport) {
             passReqToCallback : true
         },
         function(req, email, password, done) {
-            console.log("error");
             process.nextTick(function() {
                 User.findOne({ 'email' :  email }, function(err, user) {
                     if (err)
                         return done(err);
                     if (user) {
-                        return done(null, false);
+                        return done(null, false, req.flash('signup Message', 'That email is already taken.'));
                     } else {
                         var newUser  = new User();
                         newUser.name = req.body.name;
                         newUser.bio = req.body.bio;
                         newUser.rol = req.body.rol;
-                        newUser.email = email;
+                        newUser.email    = email;
                         newUser.password = newUser.generateHash(password);
                         newUser.save(function(err) {
                             if (err)
@@ -59,14 +58,13 @@ module.exports = function(passport) {
                     return done(err);
 
                 if (!user)
-                    return done(null, false);
+                    return done(null, false); // req.flash is the way to set flashdata using connect-flash
 
                 if (!user.validPassword(password))
-                    return done(null, false);
+                    return done(null, false); // create the loginMessage and save it to session as flashdata
 
                 return done(null, user);
             });
 
         }));
-
 };
