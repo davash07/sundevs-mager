@@ -53,7 +53,7 @@
                 <% if (time_record[i].project_id == project.id && user[k].id == time_record[i].user_id){ %>
                 <% sumHours.push(time_record[i].hours); hours = hours + time_record[i].hours;
                     sumMinutes.push(time_record[i].minutes); minutes = minutes + time_record[i].minutes;
-                %>
+                }%>
                 <tr>
                     <td><%= project.start_date %></td>
                     <td><%= user[k].name %></td>
@@ -63,8 +63,7 @@
                     <td><%= hours %></td>
                 </tr>
 
-                <%}}}}}%>
-
+                <%}}}}%>
                 </tbody>
             </table>
         </div>

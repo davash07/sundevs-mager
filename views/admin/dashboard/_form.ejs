@@ -3,6 +3,7 @@
         document.getElementById("minutes").defaultValue = "00";
         document.getElementById("comment").defaultValue = "--";
     }
+
 </script>
 <!-- Modal -->
 <div id="ModalProject" class="modal fade" role="dialog">
@@ -18,17 +19,35 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <label>Project</label>
-                                <select class="selectpicker" id="project" name="project">
+                                <select class="target" id="projects" name="project">
                                     <% if (projects.length === null) { %>
                                     <option value="">--------</option>
                                     <% } else { %>
+                                    <option value="">--------</option>
                                     <% for(var i = 1; i < projects.length; i++){ %>
                                     <option value="<%= projects[i]._id%>"><%= projects[i].name%></option>
                                     <% } %>
                                     <% } %>
+                                    <script>
+                                        $( "#projects" )
+                                            .change(function () {
+                                                var str = "";
+                                                $( "#projects" ).each(function() {
+                                                    str += $(this).val() ;
+                                                });
+                                                $( "#projectid" ).val(str);
+                                                $("#selectclient").append(
+                                                    $("<option>").attr("value", "0").text(str)
+                                                );
+                                            })
+                                            .change();
+                                    </script>
                                 </select>
                             </div>
                         </div>
+
+                    </div>
+                    <input type="text" class="form-control" id="projectid" name="cambio" required>
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <label>User</label><br>
@@ -42,9 +61,9 @@
                                     <% } %>
                                     <% } %>
                                 </select>
+
                             </div>
                         </div>
-                    </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -55,7 +74,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>End Date</label>
-                                <input type="date" class="form-control" name="start_date" >
+                                <input type="date" class="form-control" name="end_date" >
                             </div>
                         </div>
                     </div>
@@ -72,7 +91,6 @@
 
 <div id="ModalActivity" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title text-center">Create Report Activity</h2>
@@ -99,11 +117,43 @@
                                 <label>User</label><br>
                                 <select class="selectpicker" id="user" name="user">
                                     <% if (users.length === null) { %>
-                                    <option value="">--------</option>
+                                    <option value="all">--------</option>
                                     <% } else { %>
                                     <option value="all">--------</option>
-                                    <% for(var j = 1; j < users.length; j++){ %>
+                                    <% for(var j = 0; j < users.length; j++){ %>
                                     <option value="<%= users[j]._id%>"><%= users[j].name%></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <label>Activity</label><br>
+                                <select class="selectpicker" id="activity" name="user">
+                                    <% if (projects.length === null) { %>
+                                    <option value="all">--------</option>
+                                    <% } else { %>
+                                    <option value="all">--------</option>
+                                    <% for(var j = 0; j < projects.length; j++){ %>
+                                    <% for(var k = 0; k < projects[j].activities.length; k++){%>
+                                    <option value="<%= projects[j].activities[k]%>"><%= projects[j].activities[k] %></option>
+                                    <%}%>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <label>Activity</label><br>
+                                <select class="selectpicker" id="activity" name="user">
+                                    <% if (clients.length === null) { %>
+                                    <option value="all">--------</option>
+                                    <% } else { %>
+                                    <option value="all">--------</option>
+                                    <% for(var j = 0; j < clients.length; j++){ %>
+                                    <option value="<%= clients[j].id%>"><%= clients[j].company_name %></option>
                                     <% } %>
                                     <% } %>
                                 </select>

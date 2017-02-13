@@ -4,11 +4,13 @@
 var ProjectModel = require('../../models/project');
 var UserModel = require('../../models/user');
 var TimeRecordModel = require('../../models/time_record');
+var ClientModel = require('../../models/client');
 
 function index(req, res, next) {
     var dataTimeRecord;
     var dataProjects;
     var dataUsers;
+    var dataClient;
 
     TimeRecordModel.find()
         .sort({createdAt: "descending"})
@@ -17,11 +19,12 @@ function index(req, res, next) {
                 return next(err);
             }
             dataTimeRecord = time_record;
-            if (dataProjects != null && dataUsers != null) {
+            if (dataProjects != null && dataUsers != null && dataClient != null) {
                 res.render("admin/dashboard/index", {
                     time_record: time_record,
                     projects: dataProjects,
-                    users: dataUsers
+                    users: dataUsers,
+                    clients: dataClient
                 });
             }
 
@@ -34,11 +37,12 @@ function index(req, res, next) {
                 return next(err);
             }
             dataProjects = projects;
-            if (dataTimeRecord != null && dataUsers != null) {
+            if (dataTimeRecord != null && dataUsers != null && dataClient != null) {
                 res.render("admin/dashboard/index", {
                     time_record: dataTimeRecord,
                     projects: projects,
-                    users: dataUsers
+                    users: dataUsers,
+                    clients: dataClient
                 });
             }
         });
@@ -50,11 +54,28 @@ function index(req, res, next) {
                 return next(err);
             }
             dataUsers = users;
-            if (dataTimeRecord != null && dataProjects != null) {
+            if (dataTimeRecord != null && dataProjects != null && dataClient != null) {
                 res.render("admin/dashboard/index", {
                     time_record: dataTimeRecord,
                     projects: dataProjects,
-                    users: dataUsers
+                    users: users,
+                    clients: dataClient
+                });
+            }
+        });
+    ClientModel.find()
+        .sort({createdAt: "descending"})
+        .exec(function (err, clients) {
+            if (err) {
+                return next(err);
+            }
+            dataClient = clients;
+            if (dataTimeRecord != null && dataProjects != null && dataUsers != null) {
+                res.render("admin/dashboard/index", {
+                    time_record: dataTimeRecord,
+                    projects: dataProjects,
+                    users: dataUsers,
+                    clients: dataClient
                 });
             }
         });
@@ -63,19 +84,30 @@ function index(req, res, next) {
 function create_report_project(req, res) {
 
     ProjectModel.findOne({_id: req.body.project}, function (err, project) {
-        console.log(req.body.user);
         if (req.body.user != 'all') {
             UserModel.findOne({_id: req.body.user}, function (err, user) {
-                console.log("Show");
-                TimeRecordModel.find()
-                    .sort({createdAt: "descending"})
-                    .exec(function (err, time_record) {
-                        res.render("admin/dashboard/_report_project", {
-                            project: project,
-                            user: user,
-                            time_record: time_record
+                console.log(req.body.start_date);
+                if(req.body.start_date == null){
+                    TimeRecordModel.find()
+                        .sort({createdAt: "descending"})
+                        .exec(function (err, time_record) {
+                            res.render("admin/dashboard/_report_project", {
+                                project: project,
+                                user: user,
+                                time_record: time_record
+                            });
                         });
-                    });
+                }else{
+                    TimeRecordModel.find({"date": {"$gt": req.body.start_date, "$lt": req.body.end_date}},
+                        function (err, time_record) {
+                            res.render("admin/dashboard/_report_project", {
+                                project: project,
+                                user: user,
+                                time_record: time_record
+                            });
+                        });
+                }
+
             });
         } else {
             UserModel.find()
@@ -100,7 +132,7 @@ function create_report_project(req, res) {
 function create_report_activity(req, res) {
     ProjectModel.findOne({_id: req.body.project}, function (err, project) {
         console.log(req.body.user);
-        if (req.body.user != 'all') {
+        if (req.body.user != 'all' && req.body.project != 'all') {
             UserModel.findOne({_id: req.body.user}, function (err, user) {
                 console.log("Show");
                 TimeRecordModel.find()
@@ -117,14 +149,19 @@ function create_report_activity(req, res) {
             UserModel.find()
                 .sort({createdAt: "descending"})
                 .exec(function (err, user) {
-                    TimeRecordModel.find()
+                    ClientModel.find()
                         .sort({createdAt: "descending"})
-                        .exec(function (err, time_record) {
-                            res.render("admin/dashboard/_report_activity", {
-                                project: project,
-                                user: user,
-                                time_record: time_record
-                            });
+                        .exec(function (err, client) {
+                            TimeRecordModel.find()
+                                .sort({createdAt: "descending"})
+                                .exec(function (err, time_record) {
+                                    res.render("admin/dashboard/_report_activity", {
+                                        project: project,
+                                        user: user,
+                                        time_record: time_record,
+                                        client: client
+                                    });
+                                });
                         });
                 });
         }

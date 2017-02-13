@@ -1,7 +1,6 @@
 <% include ../../base/_header.ejs %>
 <% include ../../base/_navbar.ejs %>
 <% include ../../base/_aside.ejs %>
-
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
@@ -25,6 +24,7 @@
                     var sumMinutes = [];
                     var minutes = 0;
                 %>
+
                 <% for (var l = 0; l < time_record.length; l++ ){ %>
                 <% if (time_record[l].project_id == project.id && user.id == time_record[l].user_id){ %>
                 <% sumHours.push(time_record[l].hours); hours = hours + time_record[l].hours;
@@ -35,26 +35,32 @@
                     <td><%= user.name %></td>
                     <td><%= hours %></td>
                 </tr>
-                <% }else{%>
-                <% for (var i = 0; i < time_record.length; i++ ){ %>
-                <% for (var k = 0; k < user.length; k++){
-                if(user[k].id == time_record[i].user_id){%>
+                <% }else{ %>
                 <% var sumHours = [];
                     var hours = 0;
                     var sumMinutes = [];
                     var minutes = 0;
-                %>
-                <% if (time_record[i].project_id == project.id && user[k].id == time_record[i].user_id){ %>
-                <% sumHours.push(time_record[i].hours); hours = hours + time_record[i].hours;
-                    sumMinutes.push(time_record[i].minutes); minutes = minutes + time_record[i].minutes;
+                    var name ;
                 %>
                 <tr>
                     <td><%= project.start_date %></td>
-                    <td><%= user[k].name %></td>
+                    <% for (var k = 0; k < user.length; k++ ){ %>
+                    <% for (var i = 0; i < time_record.length; i++){ %>
+                    <% if(user[k].id == time_record[i].user_id){ %>
+                    <% if (time_record[i].project_id == project.id){ %>
+
+                    <% sumHours.push(time_record[i].hours); hours = hours + time_record[i].hours;
+                        sumMinutes.push(time_record[i].minutes); minutes = minutes + time_record[i].minutes;
+                        name = user[k].name
+                    %>
+
+                    <%}}}} %>
+                    <td><%= name %></td>
+
                     <td><%= hours %></td>
                 </tr>
 
-                <%}}}}}%>
+                <% } %>
 
                 </tbody>
             </table>
