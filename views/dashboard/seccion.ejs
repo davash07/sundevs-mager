@@ -37,6 +37,7 @@
                         %>
                         0<%= hours %>:
                         <% var countMinutes = "" + minutes + "";
+
                         if (countMinutes.length == 1){ %>
                         0<%= minutes %>
                         <% }else{ %>
@@ -44,7 +45,8 @@
                         <% } %>
                         <% }else { %>
                         <%= hours %>:
-                        <% if (countMinutes.length == 1){ %>
+                        <% var countMinutes = "" + minutes + "";
+                        if (countMinutes.length == 1){ %>
                         0<%= minutes %>
                         <% }else{ %>
                         <%= minutes %>

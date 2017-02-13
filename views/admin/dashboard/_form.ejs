@@ -19,7 +19,8 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <label>Project</label>
-                                <select class="target" id="projects" name="project">
+                                <% var pro ;%>
+                                <select class="target" id="projects" name="project" >
                                     <% if (projects.length === null) { %>
                                     <option value="">--------</option>
                                     <% } else { %>
@@ -36,9 +37,6 @@
                                                     str += $(this).val() ;
                                                 });
                                                 $( "#projectid" ).val(str);
-                                                $("#selectclient").append(
-                                                    $("<option>").attr("value", "0").text(str)
-                                                );
                                             })
                                             .change();
                                     </script>
