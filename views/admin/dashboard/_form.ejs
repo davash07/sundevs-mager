@@ -43,9 +43,6 @@
                                 </select>
                             </div>
                         </div>
-
-                    </div>
-                    <input type="text" class="form-control" id="projectid" name="cambio" required>
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <label>User</label><br>
@@ -62,6 +59,9 @@
 
                             </div>
                         </div>
+                    </div>
+                    <!--<input type="text" class="form-control" id="projectid" name="cambio" required>-->
+
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -98,6 +98,21 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group form-float">
+                                <label>Client</label><br>
+                                <select class="selectpicker" id="client" name="client">
+                                    <% if (clients.length === null) { %>
+                                    <option value="all">--------</option>
+                                    <% } else { %>
+                                    <option value="all">--------</option>
+                                    <% for(var j = 0; j < clients.length; j++){ %>
+                                    <option value="<%= clients[j].id%>"><%= clients[j].company_name %></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
                                 <label>Project</label>
                                 <select class="selectpicker" id="project" name="project">
                                     <% if (projects.length === null) { %>
@@ -128,32 +143,13 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <label>Activity</label><br>
-                                <select class="selectpicker" id="activity" name="user">
-                                    <% if (projects.length === null) { %>
+                                <select class="selectpicker" id="activity" name="activity">
                                     <option value="all">--------</option>
-                                    <% } else { %>
-                                    <option value="all">--------</option>
-                                    <% for(var j = 0; j < projects.length; j++){ %>
-                                    <% for(var k = 0; k < projects[j].activities.length; k++){%>
-                                    <option value="<%= projects[j].activities[k]%>"><%= projects[j].activities[k] %></option>
-                                    <%}%>
-                                    <% } %>
-                                    <% } %>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group form-float">
-                                <label>Activity</label><br>
-                                <select class="selectpicker" id="activity" name="user">
-                                    <% if (clients.length === null) { %>
-                                    <option value="all">--------</option>
-                                    <% } else { %>
-                                    <option value="all">--------</option>
-                                    <% for(var j = 0; j < clients.length; j++){ %>
-                                    <option value="<%= clients[j].id%>"><%= clients[j].company_name %></option>
-                                    <% } %>
-                                    <% } %>
+                                    <option value="Meeting">Meeting</option>
+                                    <option value="Development">Development</option>
+                                    <option value="Design">Design</option>
+                                    <option value="Testing">Testing</option>
+                                    <option value="Bug Fixing">Bug Fixing</option>
                                 </select>
                             </div>
                         </div>
@@ -168,7 +164,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>End Date</label>
-                                <input type="date" class="form-control" name="start_date" >
+                                <input type="date" class="form-control" name="end_date" >
                             </div>
                         </div>
                     </div>
@@ -237,7 +233,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>End Date</label>
-                                <input type="date" class="form-control" name="start_date" >
+                                <input type="date" class="form-control" name="end_date" >
                             </div>
                         </div>
                     </div>
