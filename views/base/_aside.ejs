@@ -12,7 +12,7 @@
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                        <li><a href="/profile/<%= currentUser._id %>"><i class="material-icons">person</i>Profile</a></li>
                         <li role="seperator" class="divider"></li>
                         <li><a href="/logout"><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
@@ -47,6 +47,18 @@
                         <span>Users</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/admin/assets/">
+                        <i class="material-icons">important_devices</i>
+                        <span>Assets</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/coworker/">
+                        <i class="material-icons">supervisor_account</i>
+                        <span>Coworker</span>
+                    </a>
+                </li>
                 <%}else{%>
                 <li>
                     <a href="/dashboard/">
@@ -58,6 +70,12 @@
                     <a href="/projects/">
                         <i class="material-icons">layers</i>
                         <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/coworker/">
+                        <i class="material-icons">layers</i>
+                        <span>Coworker</span>
                     </a>
                 </li>
                 <%}%>

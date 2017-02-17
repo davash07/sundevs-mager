@@ -1,0 +1,64 @@
+<% console.log(okr) %>
+<% if(okr == null){ %>
+<% }else if (okr.length == undefined ){ %>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>
+                Objective.<br> <%= okr.objective %>
+            </h2>
+            <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+
+                        <li><a data-confirm="Are you sure you want to delete?" data-href="/profile_okr/<%= okr._id %>/destroy" data-toggle="modal" data-target="#confirm-delete">Delete</a></li>
+                        <li><a  href="/profile_okr/<%= okr._id %>/edit">Edit</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <p style="font-size: 18px">Result</p>
+            <% for (var l = 0; l < okr.result.length; l++){%>
+            * <%= okr.result[l] %><br>
+            <%}%>
+        </div>
+    </div>
+</div>
+<% }else{ %>
+<% for (var i = 0; i < okr.length; i++ ){ %>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>
+                Objective.<br> <%= okr[i].objective %>
+            </h2>
+            <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+
+                        <li><a data-confirm="Are you sure you want to delete?"
+                               data-href="/profile_okr/<%= okr[i]._id %>/destroy" data-toggle="modal"
+                               data-target="#confirm-delete">Delete</a></li>
+                        <li><a  href="/profile_okr/<%= okr[i]._id %>/edit">Edit</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <p style="font-size: 18px">Result</p>
+            <% for (var l = 0; l < okr[i].result.length; l++){%>
+            * <%= okr[i].result[l] %><br>
+            <%}%>
+        </div>
+    </div>
+</div>
+<% }} %>

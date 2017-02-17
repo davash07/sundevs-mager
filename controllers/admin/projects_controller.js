@@ -87,7 +87,17 @@ function create(req, res, next) {
 }
 
 function show(req, res) {
-
+    ProjectModel.findOne({_id: req.params.id}, function(err, project) {
+        UserModel.find()
+            .sort({createdAt: "descending"})
+            .exec(function (err, users) {
+                if(err){
+                    return next(err);
+                }
+                res.render("admin/project/show", {project: project, users : users});
+            });
+        console.log("Show");
+    });
 }
 
 function edit(req, res) {

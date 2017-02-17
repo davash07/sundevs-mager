@@ -3,7 +3,7 @@
  */
 var ProjectModel = require('../models/project');
 var ClientModel = require('../models/client');
-
+var UserModel = require('../models/user');
 function index (req, res, next){
     var dataClients;
     var dataProjects;
@@ -36,8 +36,15 @@ function index (req, res, next){
 
 function show(req, res) {
     ProjectModel.findOne({_id: req.params.id}, function(err, project) {
+        UserModel.find()
+            .sort({createdAt: "descending"})
+            .exec(function (err, users) {
+                if(err){
+                    return next(err);
+                }
+                res.render("project/show", {project: project, users: users});
+            });
         console.log("Show");
-        res.render("project/show", {project: project});
     });
 }
 exports.index = index;

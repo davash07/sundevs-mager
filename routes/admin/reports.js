@@ -2,7 +2,7 @@
  * Created by devios on 9/02/17.
  */
 module.exports  = function (router) {
-    var reportController = require('../../controllers/admin/report_controller');
+    var reportController = require('../../controllers/admin/reports_controller');
     var sessions_helper = require('../../helpers/sessions_helper');
     router.all("/report", sessions_helper.ensureAuthenticated);
     router.get("/report/", reportController.index);

@@ -1,0 +1,28 @@
+<% include ../base/_header.ejs %>
+<% include ../base/_navbar.ejs%>
+<% include ../base/_aside.ejs %>
+<!-- Tablet Project -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header text-center">
+            <center>
+                <img class="img-circle " src="/images/user.png" width="150" height="150" alt="User" style="box-shadow: 5px 5px 5px rgba(0,0,0,0.4)" />
+            </center>
+            <form>
+                <% console.log(user) %>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label>Name</label>
+                                <input style="background-color: transparent" type="text" class="form-control" name="name"
+                                       value="<%= user %>" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<% include ../base/_footer.ejs %>

@@ -1,0 +1,94 @@
+<script>
+    $(document).ready(function () {
+        var max_fields = 10;
+        var wrapper = $(".input_fields_wrap");
+        var add_button = $(".add_field_button");
+
+        var x = 1;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++;
+                $(wrapper).append('<div class="text-center input_fields_wrap form-line"><a href="#" class="remove_field"><i class="material-icons">close</i> </a><input type="text" class="form-control" name="result" required/><label class="form-label">Result</label></div>');
+            }
+        });
+
+        $(wrapper).on("click", ".remove_field", function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        })
+    });
+
+    function validateEmpty() {
+        document.getElementById("estimated_hours").defaultValue = "00";
+        document.getElementById("challenging_bugs").defaultValue = "00";
+        document.getElementById("trello_board_id").defaultValue = "--";
+    }
+</script>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-center modal-title">New OKR</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form_validation" method="POST" action="/profile_okr">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input hidden type="text" name="user_id" value="<%= currentUser.id%>">
+                                    <input type="text" class="form-control" name="objective" required>
+                                    <label class="form-label">Objective</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col-sm-12">
+                            <div class="form-group form-float">
+                                <a href="#" class="add_field_button"><i class="material-icons">add</i></a>
+                                <div class="text-center input_fields_wrap form-line">
+                                    <input type="text" class="form-control" name="result" required>
+                                    <label class="form-label">Result</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-sm-6 text-left">
+                                <button type="submit" class="btn btn-info" onclick="validateEmpty()">Send</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title text-center" id="myModalLabel">Confirm Delete User</h2>
+            </div>
+
+            <div class="modal-body text-center">
+                <h3>Do you want to proceed?</h3>
+            </div>
+
+            <div class="modal-footer">
+                <a class="btn btn-primary" id="dataConfirmOK">Yes</a>
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
+            </div>
+        </div>
+    </div>
+</div>

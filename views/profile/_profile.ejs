@@ -1,0 +1,18 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header text-center">
+            <center>
+                <img class="img-circle " src="/images/user.png" width="150" height="150" alt="User" style="box-shadow: 5px 5px 5px rgba(0,0,0,0.4)" />
+            </center>
+            <p style="font-size: 30px; font-family: 'San Francisco', sans-serif; font-weight: 300;">
+                <%= currentUser.name %><br>
+                <%= currentUser.email %><br>
+                <%= currentUser.bio %>
+            </p>
+            <hr style="background-color: #626262; height: 1px">
+            <p href="" >OKRs View </p>
+        </div>
+
+        <% include _table.ejs%>
+    </div>
+</section>

@@ -1,9 +1,9 @@
-<% include ../base/_header.ejs %>
-<% include ../base/_navbar.ejs %>
-<% include ../base/_aside.ejs %>
+<% include ../../base/_header.ejs %>
+<% include ../../base/_navbar.ejs %>
+<% include ../../base/_aside.ejs %>
 <section class="content">
     <div class="container-fluid">
-        <div class="block-header ">
+        <div class="block-header">
             <h2 style="font-size: 30px">
                 Project Details
             </h2>
@@ -17,7 +17,6 @@
             </div>
         </div>
         <div class="row">
-
             <div class="col-sm-6">
                 <p style="font-size: 18px; margin-top: 2%">Estimated End Date : <%= project.estimated_end_date %></p>
                 <p style="font-size: 18px; margin-top: 4.5%">Real End Date : <%= project.real_end_date %></p>
@@ -32,19 +31,19 @@
             </div>
             <div class="col-sm-12">
                 <p style="font-size: 18px; margin-top: 2%">Users</p>
-                <% for(var k = 0; k < project.users_id.length; k++){ %>
+                <% for(var i = 0; i < project.users_id.length; i++){ %>
                 <% for(var j = 0; j < users.length; j++){%>
-                <% if (users[j].id == project.users_id[k]){%>
+                <% if (users[j].id == project.users_id[i]){%>
                 <p style="font-size: 18px">* <%= users[j].name %></p>
                 <% }}} %>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-9 text-center">
-                <a class="btn btn-info" href="/projects">Back</a>
+                <a class="btn btn-info" href="/admin/projects">Back</a>
             </div>
         </div>
     </div>
 </section>
 
-<% include ../base/_footer.ejs %>
+<% include ../../base/_footer.ejs %>

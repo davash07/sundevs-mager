@@ -1,9 +1,7 @@
 /**
  * Created by devios on 7/02/17.
  */
-/**
- * Created by devios on 19/01/17.
- */
+
 var ProjectModel = require('../models/project');
 var TimeRecordModel = require('../models/time_record');
 

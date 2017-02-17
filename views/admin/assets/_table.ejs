@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="body">
+        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+            <thead>
+            <tr>
+                <th class="text-center">Brand</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Model</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">State</th>
+                <th class="text-center">Price</th>
+                <th class="text-center"></th>
+                <th class="text-center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% assets.forEach(function(asset) { %>
+            <tr>
+                <td><%= asset.brand %></td>
+                <td><%= asset.type %></td>
+                <td><%= asset.model %></td>
+                <td><%= asset.description %></td>
+                <td><%= asset.state %></td>
+                <td><%= asset.price %></td>
+                <td>
+                    <div class="col-sm-6">
+                        <a href="/admin/assets/<%= asset._id %>/edit"><i class="material-icons">create</i></a>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="col-sm-6">
+                        <a data-confirm="Are you sure you want to delete?" href="/admin/assets/<%= asset._id %>/destroy"
+                           data-toggle="modal"
+                           data-target="#confirm-delete"><i class="material-icons">close</i> </a>
+                    </div>
+                </td>
+            </tr>
+            <% }) %>
+            </tbody>
+        </table>
+
+    </div>
+</div>

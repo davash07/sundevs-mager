@@ -1,0 +1,180 @@
+<script>
+    $(document).ready(function() {
+        var max_fields      = 10;
+        var wrapper         = $(".input_fields_wrap");
+        var add_button      = $(".add_field_button");
+
+        var x = 1;
+        $(add_button).click(function(e){
+            e.preventDefault();
+            if(x < max_fields){
+                x++;
+                $(wrapper).append('<div class="text-center input_fields_wrap form-line"><a href="#" class="remove_field"><i class="material-icons">close</i> </a><input type="text" class="form-control" name="type" required/><label class="form-label">Type</label></div>');
+            }
+        });
+
+        $(wrapper).on("click",".remove_field", function(e){
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
+    });
+
+    function validateEmpty() {
+        document.getElementById("estimated_hours").defaultValue = "00";
+        document.getElementById("challenging_bugs").defaultValue = "00";
+        document.getElementById("trello_board_id").defaultValue = "--";
+    }
+</script>
+<div id="ModalIsset" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center">Create Brand</h2>
+            </div>
+            <div class="modal-body">
+                <form id="form_validation" action="/admin/assets_brand" method="POST">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="brand" required>
+                                    <label class="form-label">Brand</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-sm-12">
+                                <div class="form-group form-float">
+                                    <a href="#" class="add_field_button"><i class="material-icons">add</i></a>
+                                    <div class="text-center input_fields_wrap form-line">
+                                        <input type="text" class="form-control" name="type" required>
+                                        <label class="form-label">Type</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <center>
+                            <button class="btn btn-primary waves-effect" type="submit">Save</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div id="ModalHardware" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center">Create Hardware</h2>
+            </div>
+            <div class="modal-body">
+                <form id="form_validation" action="/admin/assets" method="POST">
+                    <div class="row">
+                        <div class="col-sm-6 ">
+                            <label>Brand</label>
+                            <div class="form-select">
+                                <select class="selectpicker" id="select" name="brand" required>
+                                    <% brands.forEach(function(brand) { %>
+                                    <option value="<%= brand.brand %>"> <%= brand.brand %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <label>Type</label>
+                            <div class="form-select">
+                                <select class="selectpicker" id="select" name="type" required>
+                                    <%for(var i = 0; i < brands.length; i++){%>
+                                    <%for(var j = 0; j < brands[i].type.length; j++ ){%>
+                                    <option value="<%= brands[i].type[j] %>"> <%= brands[i].type[j] %></option>
+                                    <% }} %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="model" required>
+                                    <label class="form-label">Model</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="serial_number" required>
+                                    <label class="form-label">Serial Number</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" >
+                                <label>State</label>
+                                <select class="selectpicker" name="state" required>
+                                    <option value="Good">Good</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Damaged">Damaged</option>
+                                    <option value="Out Of Service">Out Of Service</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="number" class="form-control" name="price" required>
+                                    <label class="form-label">Price</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <textarea type="number" class="form-control" name="description" required></textarea>
+                                    <label class="form-label">Description</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <center>
+                            <button class="btn btn-primary waves-effect" type="submit">Save</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title text-center" id="myModalLabel">Confirm Delete User</h2>
+            </div>
+
+            <div class="modal-body text-center">
+                <h3>Do you want to proceed?</h3>
+            </div>
+
+            <div class="modal-footer">
+                <a class="btn btn-primary" id="dataConfirmOK">Yes</a>
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -18,15 +18,17 @@ var router_admin = express.Router();
 var router = express.Router();
 //require all the app's routes
 require("./routes/admin/sessions.js")(router, passport);
-var routes_users = require("./routes/users");
 require("./routes/admin/users")(router_admin);
 require("./routes/admin/projects")(router_admin);
 require("./routes/admin/clients.js")(router_admin);
 require("./routes/admin/dashboard")(router_admin);
 require("./routes/admin/reports")(router_admin);
+require("./routes/admin/assets")(router_admin);
 require("./routes/times_records")(router);
 require("./routes/projects")(router);
 require("./routes/dashboard")(router);
+require("./routes/users")(router);
+require("./routes/coworkers")(router);
 require('./config/setuppassport')(passport);
 
 var app = express();

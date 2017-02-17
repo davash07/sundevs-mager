@@ -1,0 +1,66 @@
+<% include ../base/_header.ejs %>
+<% include ../base/_navbar.ejs %>
+<% include ../base/_aside.ejs %>
+<!-- Tablet Project -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header text-center">
+            <center>
+                <img class="img-circle " src="/images/user.png" width="150" height="150" alt="User"
+                     style="box-shadow: 5px 5px 5px rgba(0,0,0,0.4)"/>
+            </center>
+            <p style="font-size: 30px; font-family: 'San Francisco', sans-serif; font-weight: 300;">
+                <%= user.name %><br>
+                <%= user.email %><br>
+                <%= user.bio %>
+            </p>
+            <hr style="background-color: #626262; height: 1px">
+            <p>OKRs View </p>
+        </div>
+        <div class="row">
+            <% if(okrs == null){ %>
+            <p style="font-size: 20px; font-family: 'San Francisco', sans-serif; font-weight: 300; text-align: center">
+                Este individuo no tiene okrs</p>
+            <% }else if (okrs.length == undefined ){ %>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Objective.<br> <%= okrs.objective %>
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <p style="font-size: 18px">Result</p>
+                        <% for (var l = 0; l < okrs.result.length; l++){ %>
+                        * <%= okrs.result[l] %><br>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <% }else{ %>
+            <% for (var i = 0; i < okrs.length; i++ ){ %>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Objective.<br> <%= okrs[i].objective %>
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <p style="font-size: 18px">Result</p>
+                        <% for (var l = 0; l < okrs[i].result.length; l++){ %>
+                        * <%= okrs[i].result[l] %><br>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <% }} %>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a class="btn btn-info" href="/coworker">Back</a>
+            </div>
+        </div>
+    </div>
+</section>
+<% include ../base/_footer.ejs %>
