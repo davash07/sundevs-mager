@@ -4,42 +4,31 @@
 var ProjectModel = require('../models/project');
 var ClientModel = require('../models/client');
 var UserModel = require('../models/user');
-function index (req, res, next){
-    var dataClients;
-    var dataProjects;
-
+function index(req, res, next) {
     ClientModel.find()
         .sort({createdAt: "descending"})
         .exec(function (err, clients) {
-            if(err){
+            if (err) {
                 return next(err);
             }
-            dataClients = clients;
-            if (dataProjects != null){
-                res.render("project/index", {clients : clients, projects : dataProjects});
-            }
-
+            ProjectModel.find()
+                .sort({createdAt: "descending"})
+                .exec(function (err, projects) {
+                    if (err) {
+                        return next(err);
+                    }
+                    res.render("project/index", {clients: clients, projects: projects});
+                });
         });
 
-    ProjectModel.find()
-        .sort({createdAt: "descending"})
-        .exec(function (err, projects) {
-            if(err){
-                return next(err);
-            }
-            dataProjects = projects;
-            if (dataClients != null){
-                res.render("project/index", {clients : dataClients, projects : dataProjects});
-            }
-        });
 }
 
 function show(req, res) {
-    ProjectModel.findOne({_id: req.params.id}, function(err, project) {
+    ProjectModel.findOne({_id: req.params.id}, function (err, project) {
         UserModel.find()
             .sort({createdAt: "descending"})
             .exec(function (err, users) {
-                if(err){
+                if (err) {
                     return next(err);
                 }
                 res.render("project/show", {project: project, users: users});

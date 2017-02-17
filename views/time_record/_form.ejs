@@ -2,7 +2,24 @@
     function validateEmpty() {
         document.getElementById("minutes").defaultValue = "00";
         document.getElementById("comment").defaultValue = "--";
+        document.getElementById("")
     }
+</script>
+<script>
+    $(document).ready(function(){
+        //función click
+        $("#bEnviar").click(function(){
+
+            var hours = $("#hours").val();
+            var minutes = $("#minutes").val();
+
+            if(hours == 0 && minutes == 0){
+                alert("El Tiempo No Puede Ir En 0")
+                return false;
+            }
+
+        });//click
+    });//ready
 </script>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -51,7 +68,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="number" min="0" class="form-control" name="hours" required>
+                                    <input type="number" min="0" class="form-control" id="hours" name="hours" required>
                                     <label class="form-label">Hours</label>
                                 </div>
                             </div>
@@ -73,7 +90,7 @@
                     </div>
                     <div class="modal-footer">
                         <center>
-                            <button class="btn btn-primary waves-effect" onclick="validateEmpty()" type="submit">Save</button>
+                            <button class="btn btn-primary waves-effect" id="bEnviar" onclick="validateEmpty()" type="submit">Save</button>
                         </center>
                     </div>
                 </form>
