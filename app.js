@@ -33,7 +33,7 @@ require('./config/setuppassport')(passport);
 
 var app = express();
 
-app.set("port", process.env.PORT || 3001);
+app.set("port", process.env.PORT || 3000);
 setUpPassport();
 app.use(logger("dev"));
 
@@ -79,11 +79,14 @@ app.use(function(err, req, res, next) {
 app.use(function(err, req, res, next) {
     if(err.name == 'ValidationError') {
         res.statusCode = 400;
-
+        res.render("error_code/400");
         res.send({ error: 'Validation error' });
     } else {
         res.statusCode = 500;
-        res.send({ error: 'Server error' });
+        // res.send({ error: 'Server error' } );
+        res.render("error_code/500");
+        console.log('error: Server error')
+
     }
     console.log('Internal error(%d): %s', res.statusCode,err.message);
 
