@@ -1,5 +1,7 @@
 <% console.log(okr) %>
 <% if(okr == null){ %>
+<p style="font-size: 20px; font-family: 'San Francisco', sans-serif; font-weight: 300; text-align: center">
+    No Tienes OKRs Creados</p>
 <% }else if (okr.length == undefined ){ %>
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="card">
@@ -15,17 +17,19 @@
                     </a>
                     <ul class="dropdown-menu pull-right">
 
-                        <li><a data-confirm="Are you sure you want to delete?" data-href="/profile_okr/<%= okr._id %>/destroy" data-toggle="modal" data-target="#confirm-delete">Delete</a></li>
-                        <li><a  href="/profile_okr/<%= okr._id %>/edit">Edit</a></li>
+                        <li><a data-confirm="Are you sure you want to delete?"
+                               data-href="/profile_okr/<%= okr._id %>/destroy" data-toggle="modal"
+                               data-target="#confirm-delete">Delete</a></li>
+                        <li><a href="/profile_okr/<%= okr._id %>/edit">Edit</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
         <div class="body">
             <p style="font-size: 18px">Result</p>
-            <% for (var l = 0; l < okr.result.length; l++){%>
+            <% for (var l = 0; l < okr.result.length; l++){ %>
             * <%= okr.result[l] %><br>
-            <%}%>
+            <% } %>
         </div>
     </div>
 </div>
@@ -48,16 +52,16 @@
                         <li><a data-confirm="Are you sure you want to delete?"
                                data-href="/profile_okr/<%= okr[i]._id %>/destroy" data-toggle="modal"
                                data-target="#confirm-delete">Delete</a></li>
-                        <li><a  href="/profile_okr/<%= okr[i]._id %>/edit">Edit</a></li>
+                        <li><a href="/profile_okr/<%= okr[i]._id %>/edit">Edit</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
         <div class="body">
             <p style="font-size: 18px">Result</p>
-            <% for (var l = 0; l < okr[i].result.length; l++){%>
+            <% for (var l = 0; l < okr[i].result.length; l++){ %>
             * <%= okr[i].result[l] %><br>
-            <%}%>
+            <% } %>
         </div>
     </div>
 </div>
